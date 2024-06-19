@@ -23,6 +23,9 @@ public class ShoppingCart {
         if (product.getNumberOfLegs() != null) {
             return BigDecimal.valueOf(4.2 * product.getNumberOfLegs());
         } else if (product.getAge() != null) {
+
+        //TODO add new features for spider: price for each leg, color, etc.
+        
             if (product.isStinky()) {
                 return BigDecimal.valueOf(10.0* product.getAge());
             } else {
@@ -34,7 +37,10 @@ public class ShoppingCart {
                 case "gold" -> product.getBasePrice().multiply(BigDecimal.valueOf(100.0));
                 default -> product.getBasePrice();
             };
-        } else if (product.getName().equals("Magic: The Gathering - Black Lotus")) {
+
+//TODO add 20% value or half depending on age
+
+        } else if (product.getName().equals("Magic: The Gathering - Black Lotus")) { 
             return BigDecimal.valueOf(40000.0);
         } else if (product.getName().startsWith("Magic: The Gathering")) {
             return switch (product.getColor()) {

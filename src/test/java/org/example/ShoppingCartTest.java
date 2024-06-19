@@ -111,7 +111,7 @@ class ShoppingCartTest {
     }
 
     @Test
-    void calculatePriceForFish_gold() {
+    void calculatePriceForAnimal_spider() {
         ShoppingCart shoppingCart = new ShoppingCart();
 
         Product product = new Product(null, null, false, "gold", null, null, null);
