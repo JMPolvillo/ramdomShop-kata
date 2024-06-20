@@ -20,8 +20,14 @@ public class ShoppingCart {
     }
 
     private BigDecimal calculatePrice(Product product) {
-        if (product.getNumberOfLegs() != null) {
+        if (product.getNumberOfLegs() != null && product.getColor() == null) {
             return BigDecimal.valueOf(4.2 * product.getNumberOfLegs());
+        } else if (product.getNumberOfLegs() != null && product.getColor() != null) {
+            return switch (product.getColor()) {
+                case "red" -> (product.isStinky() == true) ? BigDecimal.valueOf((1.20 * product.getNumberOfLegs() + 2) * 0.5) : BigDecimal.valueOf(1.20 * product.getNumberOfLegs() + 2);
+                case "golden" -> (product.isStinky() == true) ? BigDecimal.valueOf((1.20 * product.getNumberOfLegs() + 3) * 0.5) : BigDecimal.valueOf(1.20 * product.getNumberOfLegs() + 3);
+                default -> (product.isStinky() == true) ? BigDecimal.valueOf(1.20* product.getNumberOfLegs() * 0.5) : BigDecimal.valueOf(1.20* product.getNumberOfLegs());
+            };
         } else if (product.getAge() != null && product.getColor() == null) {
             if (product.isStinky()) {
                 return BigDecimal.valueOf(10.0* product.getAge());
