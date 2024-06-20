@@ -4,24 +4,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.math.BigDecimal;
+
 class ShoppingCartTest {
-    @Test
-    void calculatePriceForMagicCards_red() {
+
+   @Test
+    void calculatePriceForMagicCards_blueLessThanTen() {
+        
         ShoppingCart shoppingCart = new ShoppingCart();
-
-        Product product = new Product(null, null, false, "red", null, "Magic: The Gathering", null);
-
-        shoppingCart.addProduct(product);
-
-        assertEquals(shoppingCart.getTotalPrice(), 3.5);
-
-    }
-
-    @Test
-    void calculatePriceForMagicCards_blue() {
-        ShoppingCart shoppingCart = new ShoppingCart();
-
-        Product product = new Product(null, null, false, "blue", null, "Magic: The Gathering", null);
+        Product product = new Product(null, 8, false, "blue", null, "Magic: The Gathering", null);
 
         shoppingCart.addProduct(product);
 
@@ -30,10 +21,45 @@ class ShoppingCartTest {
     }
 
     @Test
-    void calculatePriceForMagicCards_green() {
+    void calculatePriceForMagicCards_blueMoreThanTen() {
+       
         ShoppingCart shoppingCart = new ShoppingCart();
+        Product product = new Product(null, 12, false, "blue", null, "Magic: The Gathering", null);
 
-        Product product = new Product(null, null, false, "green", null, "Magic: The Gathering", null);
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 2.5);
+
+    }
+
+    @Test
+    void calculatePriceForMagicCards_redLessThanTen() {
+       
+        ShoppingCart shoppingCart = new ShoppingCart();
+        Product product = new Product(null, 3, false, "red", null, "Magic: The Gathering", null);
+
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 3.5);
+
+    }
+
+    @Test
+    void calculatePriceForMagicCards_redMoreThanTen() {
+        
+        ShoppingCart shoppingCart = new ShoppingCart();
+        Product product = new Product(null, 12, false, "red", null, "Magic: The Gathering", null);
+
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 1.75);
+    }
+
+    @Test
+    void calculatePriceForMagicCards_greenLessThanTwenty() {
+        
+        ShoppingCart shoppingCart = new ShoppingCart();
+        Product product = new Product(null, 8, false, "green", null, "Magic: The Gathering", null);
 
         shoppingCart.addProduct(product);
 
@@ -42,10 +68,21 @@ class ShoppingCartTest {
     }
 
     @Test
-    void calculatePriceForMagicCards_black() {
+    void calculatePriceForMagicCards_greenMoreThanTwenty() {
+        
         ShoppingCart shoppingCart = new ShoppingCart();
+        Product product = new Product(null, 25, false, "green", null, "Magic: The Gathering", null);
 
-        Product product = new Product(null, null, false, "black", null, "Magic: The Gathering", null);
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 5.28);
+    }
+
+    @Test
+    void calculatePriceForMagicCards_blackLessThanTwenty() {
+        
+        ShoppingCart shoppingCart = new ShoppingCart();
+        Product product = new Product(null, 8, false, "black", null, "Magic: The Gathering", null);
 
         shoppingCart.addProduct(product);
 
@@ -54,9 +91,21 @@ class ShoppingCartTest {
     }
 
     @Test
-    void calculatePriceForMagicCards_brown() {
+    void calculatePriceForMagicCards_blackMoreThanTwenty() {
+        
         ShoppingCart shoppingCart = new ShoppingCart();
+        Product product = new Product(null, 25, false, "black", null, "Magic: The Gathering", null);
 
+        shoppingCart.addProduct(product);
+
+        assertEquals(shoppingCart.getTotalPrice(), 8.16);
+
+    }
+
+    @Test
+    void calculatePriceForMagicCards_brown() {
+        
+        ShoppingCart shoppingCart = new ShoppingCart();
         Product product = new Product(null, null, false, "brown", null, "Magic: The Gathering", null);
 
         shoppingCart.addProduct(product);
@@ -67,8 +116,8 @@ class ShoppingCartTest {
 
     @Test
     void calculatePriceForMagicCards_blacklotus() {
+        
         ShoppingCart shoppingCart = new ShoppingCart();
-
         Product product = new Product(null, null, false, null, null, "Magic: The Gathering - Black Lotus", null);
 
         shoppingCart.addProduct(product);
@@ -79,20 +128,20 @@ class ShoppingCartTest {
     
     @Test
     void calculatePriceForFish_blue() {
+        
         ShoppingCart shoppingCart = new ShoppingCart();
-
-        Product product = new Product(null, null, false, "blue", null, null, null);
+        Product product = new Product(null, null, false, "blue", BigDecimal.valueOf(0), null, null);
 
         shoppingCart.addProduct(product);
 
-        assertEquals(shoppingCart.getTotalPrice(), 1.1);
+        assertEquals(shoppingCart.getTotalPrice(), 0.1);
     }
 
     @Test
     void calculatePriceForFish_gold() {
+       
         ShoppingCart shoppingCart = new ShoppingCart();
-
-        Product product = new Product(null, null, false, "gold", null, null, null);
+        Product product = new Product(null, null, false, "gold", BigDecimal.valueOf(1), null, null);
 
         shoppingCart.addProduct(product);
 
@@ -101,8 +150,8 @@ class ShoppingCartTest {
 
     @Test
     void calculatePriceForAnimal_mammal() {
+        
         ShoppingCart shoppingCart = new ShoppingCart();
-
         Product product = new Product(1, null, false, null, null, null, null);
 
         shoppingCart.addProduct(product);
@@ -111,20 +160,9 @@ class ShoppingCartTest {
     }
 
     @Test
-    void calculatePriceForAnimal_spider() {
-        ShoppingCart shoppingCart = new ShoppingCart();
-
-        Product product = new Product(null, null, false, "gold", null, null, null);
-
-        shoppingCart.addProduct(product);
-
-        assertEquals(shoppingCart.getTotalPrice(), 100);
-    }
-
-    @Test
     void calculatePriceForWine() {
+        
         ShoppingCart shoppingCart = new ShoppingCart();
-
         Product product = new Product(null, 5, false, null, null, "el tio juanillo", null);
 
         shoppingCart.addProduct(product);
@@ -135,8 +173,8 @@ class ShoppingCartTest {
 
     @Test
     void calculatePriceForCheese() {
+        
         ShoppingCart shoppingCart = new ShoppingCart();
-
         Product product = new Product(null, 5, true, null, null, "French Camembert", null);
 
         shoppingCart.addProduct(product);
